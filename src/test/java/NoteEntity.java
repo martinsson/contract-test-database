@@ -13,4 +13,8 @@ public class NoteEntity {
     public String getId() {
         return noteId;
     }
+
+    public String getAuthor() {
+        return author;
+    }
 }
