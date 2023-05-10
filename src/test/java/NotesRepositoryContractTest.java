@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.UUID;
 
-public abstract class NotesRepositorySimpleContractTest {
+public abstract class NotesRepositoryContractTest {
     NotesRepository repository;
 
     @Test
@@ -37,11 +37,12 @@ public abstract class NotesRepositorySimpleContractTest {
 
     private void createAndSaveSomeNoteBy(String author) {
 
-        repository.saveEntity(new NoteEntity(
+        NoteEntity entity = new NoteEntity(
                 UUID.randomUUID().toString(),
                 author,
                 "some content"
-        ));
+        );
+        repository.saveEntity(entity);
 
     }
 }

@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.BeforeEach;
 
-public class NotesRepositorySimpleTest extends NotesRepositorySimpleContractTest {
+public class InMemoryNotesRepositoryTest extends NotesRepositoryContractTest {
 
     @BeforeEach
     void setUp() {

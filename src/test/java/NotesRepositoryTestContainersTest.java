@@ -1,4 +1,3 @@
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
@@ -7,7 +6,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Testcontainers
-public class NotesRepositoryTest {
+public class NotesRepositoryTestContainersTest {
 
     @Container
     private PostgreSQLContainer postgresqlContainer = new PostgreSQLContainer()
