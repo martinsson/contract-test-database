@@ -1,11 +1,18 @@
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.UUID;
 
 public class NotesRepositorySimpleTest {
-    NotesRepository repository = new NotesRepository();
+    NotesRepository repository;
+
+    @BeforeEach
+    void setUp() {
+        repository = new InMemoryNotesRepository();
+    }
+
     @Test
     void can_create() {
         String noteId = "noteId";
