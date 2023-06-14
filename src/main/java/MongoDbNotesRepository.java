@@ -1,7 +1,12 @@
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
+import static com.mongodb.client.model.Filters.eq;
 
 public class MongoDbNotesRepository implements NotesRepository {
     private final MongoDatabase database;
@@ -13,18 +18,23 @@ public class MongoDbNotesRepository implements NotesRepository {
 
     @Override
     public void saveEntity(NoteEntity note) {
-
-        MongoCollection<NoteEntity> collection = database.getCollection("movies", NoteEntity.class);
-
+        getCollection().insertOne(note);
     }
 
     @Override
     public NoteEntity findById(String noteId) {
-        return null;
+        return getCollection().find().first();
     }
 
     @Override
     public List<NoteEntity> findByAuthor(String author) {
-        return null;
+        var findResult = getCollection().find(eq("author", author));
+
+        return StreamSupport.stream(findResult.spliterator(), false)
+                .collect(Collectors.toList());
+    }
+
+    private MongoCollection<NoteEntity> getCollection() {
+        return database.getCollection("movies", NoteEntity.class);
     }
 }

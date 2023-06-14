@@ -6,7 +6,7 @@ public class InMemoryNotesRepository implements NotesRepository {
 
     @Override
     public void saveEntity(NoteEntity note) {
-        this.notes.put(note.getId(), note);
+        this.notes.put(note.getNoteId(), note);
     }
 
     @Override
