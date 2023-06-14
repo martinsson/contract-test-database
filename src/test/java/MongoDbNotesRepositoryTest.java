@@ -16,7 +16,7 @@ import static com.mongodb.MongoClientSettings.getDefaultCodecRegistry;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
-public class NotesRepositoryContractTest {
+public class MongoDbNotesRepositoryTest {
     NotesRepository repository;
 
     MongoClient mongoClient;
