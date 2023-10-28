@@ -2,7 +2,7 @@
 
 Start mongodb locally
 
-    docker run --rm --name mongo_contract_testing -d mongo
+    docker run --rm -p 27017:27017 --name mongo_contract_testing -d mongo
 
 Run existing tests in IDE or `mvn test`
 
