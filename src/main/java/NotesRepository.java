@@ -1,9 +1,7 @@
-import java.util.List;
-
 public interface NotesRepository {
-    void saveEntity(NoteEntity note);
+    void saveNote(NoteEntity note);
 
     NoteEntity findById(String noteId);
 
-    List<NoteEntity> findByAuthor(String author);
+//    List<NoteEntity> findByAuthor(String author);
 }

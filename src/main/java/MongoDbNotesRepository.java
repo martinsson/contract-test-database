@@ -17,24 +17,19 @@ public class MongoDbNotesRepository implements NotesRepository {
     }
 
     @Override
-    public void saveEntity(NoteEntity note) {
+    public void saveNote(NoteEntity note) {
         getCollection().insertOne(note);
     }
 
     @Override
     public NoteEntity findById(String noteId) {
-        return getCollection().find().first();
-    }
-
-    @Override
-    public List<NoteEntity> findByAuthor(String author) {
-        var findResult = getCollection().find(eq("author", author));
+        var findResult = getCollection().find();
         return StreamSupport.stream(findResult.spliterator(), false)
-
-                .collect(Collectors.toList());
+                .filter(n -> n.noteId.equals(noteId)) // TODO optimise using mongodb engine. eq use eq()
+                .findFirst().orElse(null);
     }
 
     private MongoCollection<NoteEntity> getCollection() {
-        return database.getCollection("movies", NoteEntity.class);
+        return database.getCollection("notes", NoteEntity.class);
     }
 }

@@ -53,4 +53,13 @@ public class NoteEntity {
     public int hashCode() {
         return Objects.hash(noteId, author, noteContent);
     }
+
+    @Override
+    public String toString() {
+        return "NoteEntity{" +
+                "noteId='" + noteId + '\'' +
+                ", author='" + author + '\'' +
+                ", noteContent='" + noteContent + '\'' +
+                '}';
+    }
 }
