@@ -28,9 +28,9 @@ public class MongoDbNotesRepository implements NotesRepository {
 
     @Override
     public List<NoteEntity> findByAuthor(String author) {
-        var findResult = getCollection().find();
+        var findResult = getCollection().find(eq("author", author));
         return StreamSupport.stream(findResult.spliterator(), false)
-                .filter(n -> n.author.equals(author))
+
                 .collect(Collectors.toList());
     }
 
