@@ -1,4 +1,4 @@
-import {MongoClient} from "mongodb";
+import {Db, MongoClient} from "mongodb";
 import {NoteRepositoryMongoDb} from "./NoteRepositoryMongoDb";
 import {NoteEntity} from "./NoteEntity";
 
@@ -15,6 +15,7 @@ describe('NoteRepositoryMongoDb', () => {
         repository = new NoteRepositoryMongoDb(db);
     })
 
+
     afterEach(() => {
         mongoClient.close()
     })
@@ -25,7 +26,7 @@ describe('NoteRepositoryMongoDb', () => {
 
         await repository.saveNote(note);
 
-        const result = repository.findById(noteId);
+        const result = await repository.findById(noteId);
         const expected = new NoteEntity(noteId, "barack@obama.org", "note content");
         expect(result).toEqual(expected)
     })

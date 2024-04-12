@@ -7,10 +7,19 @@ export class NoteRepositoryMongoDb {
     }
 
     async saveNote(note: NoteEntity) {
-        throw 'Not implemented'
+        await this.getCollection().insertOne(note)
     }
 
+
     async findById(noteId: string) : Promise<NoteEntity>{
-        throw 'Not implemented'
+        return (await this.getCollection().find().toArray())
+            .map((doc:any) => new NoteEntity(doc.noteId, doc.org, doc.noteContent))
+            .filter(n  => n.noteId === noteId)[0]
+
     }
+
+    private getCollection() {
+        return this.database.collection('notes');
+    }
+
 }
